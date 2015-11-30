@@ -7,5 +7,8 @@ services:
 
 before_install:
   - docker build -t terraform .
-  - docker run -d terraform /bin/bash -c "terraform version"
+  - docker run -d terraform export TERRAFORM_VERSION="$(terraform version)"
   - docker ps -a
+
+script:
+- echo $TERRAFORM_VERSION
