@@ -8,3 +8,4 @@ before_install:
 
 script:
   - docker run -d terraform bash -c "terraform version"
+  - docker ps -a
