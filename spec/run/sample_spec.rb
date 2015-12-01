@@ -1,13 +1,10 @@
-require 'docker'
-require 'serverspec'
+require 'spec_helper'
 
 describe "Terraform image" do
-    before(:all) do
-        @image = Docker::Image.all().detect{|i| i.info['RepoTags'].include? 'terraform:latest' }
-        set :os, family: :debian
-        set :backend, :docker
-        set :docker_image, @image.id
-    end
+before(:all) do
+    @image = Docker::Image.all().detect{|i| i.info['RepoTags'].include? 'terraform:latest' }
+    set :docker_image, @image.id
+end
     
     it "should be availble" do
         expect(@image).to_not be_nil
