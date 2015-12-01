@@ -2,12 +2,12 @@ require 'docker'
 require 'serverspec'
 
 describe "Terraform image" do
-    before(:all) {
+    before(:all) do
         @image = Docker::Image.all().detect{|i| i.info['RepoTags'].include? 'terraform:latest' }
         set :os, family: :debian
         set :backend, :docker
         set :docker_image, @image.id
-    }
+    end
     
     it "should be availble" do
         expect(@image).to_not be_nil
@@ -38,10 +38,10 @@ describe "Terraform image" do
     end
 
     it "has the Terraform version 0.6.7" do
-        expect(terraform_version).to include("0.6.7")
+        expect(terraform_version).to eq("Terraform v0.6.7")
     end
 
     def terraform_version
-        command("terraform version").stdout
+        command("terraform version").stdout.strip
     end
 end
