@@ -18,16 +18,8 @@ end
         command("lsb_release -a").stdout
     end
 
-    it "installs unzip" do
-        expect(package("unzip")).to be_installed
-    end
-
     it "installs openssh-client" do
         expect(package("openssh-client")).to be_installed
-    end
-
-    it "installs wget" do
-        expect(package("wget")).to be_installed
     end
 
     it "checks if terraform binary is executable" do
