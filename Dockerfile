@@ -8,5 +8,5 @@ RUN set -ex \
        && wget https://releases.hashicorp.com/terraform/${TERRAFORM_VER}/${TERRAFORM_ZIP} -O /tmp/$TERRAFORM_ZIP \
        && unzip /tmp/$TERRAFORM_ZIP -d /usr/local/bin \
        && chmod 775 /usr/local/bin/terra* 
-RUN apt-get -y purge wget unzip && apt-get autoremove
+RUN apt-get -y purge wget unzip && apt-get -y autoremove
 RUN apt-get -y clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
